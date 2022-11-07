@@ -3,8 +3,6 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_USERNAME: coldplaydb
-  POSTGRES_PASSWORD: coldplaydb
   POSTGRES_HOST: coldplaydb.cyltj3yourtj.us-east-1.rds.amazonaws.com
   POSTGRES_DB: postgres
   AWS_BUCKET: peggyproj3bucket

@@ -16,9 +16,22 @@ spec:
         - name: backend-user
           image: docker.io/peggylicious/udagram-api-user:v4
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          envFrom: 
+            - configMapRef:
+                name: env-config
+            - secretRef:
+                name: env-secret
           resources:
             limits:
               cpu: 500m
             requests:
               cpu: 200m
+          volumeMounts:
+            - name: aws-configmap
+              mountPath: "/root/.aws/"
+      volumes:
+        - name: aws-configmap
+          configMap:
+            name: aws-configmap
+          

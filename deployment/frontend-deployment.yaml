@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: docker.io/peggylicious/udagram-frontend:v4
+          image: docker.io/peggylicious/udagram-frontend:v10
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           resources:
             limits:
               cpu: 500m
