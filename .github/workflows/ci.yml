@@ -1,0 +1,39 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo "Hello from peggylicious second github ci"
+    - run: ls -l
+    - run: echo "------- Building images ---------"
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run: echo "------- Start tagging images ---------"
+    - run: docker tag udagram-api-feed peggylicious/udagram-api-feed:v1
+    - run: docker tag udagram-api-user peggylicious/udagram-api-user:v1
+    - run: docker tag udagram-frontend:local peggylicious/udagram-frontend:v1
+    - run: docker tag reverseproxy peggylicious/reverseproxy:v1
+    - run: echo "------- Log in to docker hub ---------"
+    - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
+    - run: echo "------- Push images to docker hub ---------"
+    - run: docker push peggylicious/udagram-api-feed:v1
+    - run: docker push peggylicious/udagram-api-user:v1
+    - run: docker push peggylicious/udagram-frontend:v1
+    - run: docker push peggylicious/reverseproxy:v1
