@@ -23,3 +23,17 @@ jobs:
     - uses: actions/checkout@v3
     - run: echo "Hello from peggylicious second github ci"
     - run: ls -l
+    - run: echo "------- Building images ---------"
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run: echo "------- Start tagging images ---------"
+    - run: docker tag udagram-api-feed peggylicious/udagram-api-feed:v1
+    - run: docker tag udagram-api-user peggylicious/udagram-api-user:v1
+    - run: docker tag udagram-frontend:local peggylicious/udagram-frontend:v1
+    - run: docker tag reverseproxy peggylicious/reverseproxy:v1
+    - run: echo "------- Log in to docker hub ---------"
+    - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
+    - run: echo "------- Push images to docker hub ---------"
+    - run: docker push peggylicious/udagram-api-feed:v1
+    - run: docker push peggylicious/udagram-api-user:v1
+    - run: docker push peggylicious/udagram-frontend:v1
+    - run: docker push peggylicious/reverseproxy:v1
