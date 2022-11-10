@@ -5,16 +5,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: frontend
+      app: frontend
   replicas: 2
   template:
     metadata:
       labels:
-        run: frontend
+        app: frontend
     spec:
       containers:
         - name: frontend
-          image: docker.io/peggylicious/udagram-frontend:v10
+          image: docker.io/peggylicious/udagram-frontend:v1
           ports:
             - containerPort: 80
           resources:

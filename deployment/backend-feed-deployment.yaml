@@ -5,12 +5,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: backend-feed
+      app: backend-feed
   replicas: 2
   template:
     metadata:
       labels:
-        run: backend-feed
+        app: backend-feed
     spec:
       containers:
         - name: backend-feed
