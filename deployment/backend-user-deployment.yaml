@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend-user
-          image: docker.io/peggylicious/udagram-api-user:v4
+          image: docker.io/peggylicious/udagram-api-user:v1
           ports:
             - containerPort: 8080
           envFrom: 

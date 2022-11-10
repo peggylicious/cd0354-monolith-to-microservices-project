@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend-feed
-          image: docker.io/peggylicious/udagram-api-feed:v4
+          image: docker.io/peggylicious/udagram-api-feed:v1
           ports:
             - containerPort: 8080
           envFrom: 
@@ -22,8 +22,6 @@ spec:
                 name: env-config
             - secretRef:
                 name: env-secret
-            - secretRef:
-                name: mysecret
           resources:
             limits:
               cpu: 500m

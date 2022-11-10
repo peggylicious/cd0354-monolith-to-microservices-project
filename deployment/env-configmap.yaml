@@ -3,9 +3,9 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_HOST: coldplaydb.cyltj3yourtj.us-east-1.rds.amazonaws.com
-  POSTGRES_DB: postgres
-  AWS_BUCKET: peggyproj3bucket
+  POSTGRES_HOST: ogeyiudagramdb.cjnexvudb6rn.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: ogeyiudagramdb
+  AWS_BUCKET: philomenaudbucket
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
